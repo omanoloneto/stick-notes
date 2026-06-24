@@ -8,7 +8,7 @@ set -euo pipefail
 CONFIG="${1:-release}"
 APP_NAME="Sticky Notes"
 EXEC_NAME="StickyNotes"
-BUNDLE_ID="com.mano.stickynotes"
+BUNDLE_ID="co.akari.stickynotes"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/build"
 APP="$OUT/$APP_NAME.app"

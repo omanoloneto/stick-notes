@@ -4,7 +4,7 @@ import AppKit
 enum Constants {
 
     /// Used for the Application Support subfolder. Bundle id when bundled, else this.
-    static let appFolderName = "com.mano.stickynotes"
+    static let appFolderName = "co.akari.stickynotes"
 
     static let notesFileName = "notes.json"
     static let backupFileName = "notes.json.bak"

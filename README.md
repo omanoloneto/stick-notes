@@ -45,10 +45,9 @@ corners, border, font, button placement). Default is **Windows 7**.
 
 ## Screenshots
 
-> _Drop screenshots/GIFs here_ (e.g. `docs/themes.png`). Right-click a note →
-> **Theme** / **Color** to see all the looks.
+> Right-click a note → **Theme** / **Color** to see all the looks.
 
-<!-- ![Themes](docs/themes.png) -->
+![Themes](docs/themes.png)
 
 ## Requirements
 
@@ -86,7 +85,7 @@ Covers the off-screen frame sanitizer and the rich-text RTF round-trip
 ## Where data lives
 
 ```
-~/Library/Application Support/com.mano.stickynotes/notes.json   (+ .bak)
+~/Library/Application Support/co.akari.stickynotes/notes.json   (+ .bak)
 ```
 
 Delete that folder to reset to a clean first-run state.
