@@ -54,7 +54,18 @@ corners, border, font, button placement). Default is **Windows 7**.
 - macOS 14 (Sonoma) or newer
 - Xcode 15+ / Swift 5.9+ toolchain (built & tested on Xcode 26 / Swift 6.3)
 
-## Run
+## Download
+
+Grab a prebuilt universal `.app` from the
+[**Releases**](https://github.com/omanoloneto/stick-notes/releases) page, unzip,
+and drag it to `/Applications`. It's ad-hoc signed (not notarized), so on first
+open use **right-click → Open**, or clear the quarantine flag:
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/Sticky Notes.app"
+```
+
+## Run (from source)
 
 From the CLI (fastest):
 

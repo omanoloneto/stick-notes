@@ -13,9 +13,19 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/build"
 APP="$OUT/$APP_NAME.app"
 
-echo "==> Building ($CONFIG)…"
-swift build -c "$CONFIG" --product "$EXEC_NAME"
-BIN="$(swift build -c "$CONFIG" --product "$EXEC_NAME" --show-bin-path)/$EXEC_NAME"
+# Version stamped into Info.plist (override for releases).
+MARKETING_VERSION="${MARKETING_VERSION:-1.0}"
+BUILD_VERSION="${BUILD_VERSION:-1}"
+
+# Optional universal build: ARCHS="arm64 x86_64" scripts/bundle.sh release
+ARCH_FLAGS=()
+if [ -n "${ARCHS:-}" ]; then
+    for a in $ARCHS; do ARCH_FLAGS+=(--arch "$a"); done
+fi
+
+echo "==> Building ($CONFIG${ARCHS:+, archs: $ARCHS})…"
+swift build -c "$CONFIG" --product "$EXEC_NAME" "${ARCH_FLAGS[@]}"
+BIN="$(swift build -c "$CONFIG" --product "$EXEC_NAME" "${ARCH_FLAGS[@]}" --show-bin-path)/$EXEC_NAME"
 
 echo "==> Assembling bundle…"
 rm -rf "$APP"
@@ -32,8 +42,8 @@ cat > "$APP/Contents/Info.plist" <<PLIST
     <key>CFBundleExecutable</key>      <string>$EXEC_NAME</string>
     <key>CFBundleIdentifier</key>      <string>$BUNDLE_ID</string>
     <key>CFBundlePackageType</key>     <string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>1.0</string>
-    <key>CFBundleVersion</key>         <string>1</string>
+    <key>CFBundleShortVersionString</key><string>$MARKETING_VERSION</string>
+    <key>CFBundleVersion</key>         <string>$BUILD_VERSION</string>
     <key>LSMinimumSystemVersion</key>  <string>14.0</string>
     <key>LSUIElement</key>             <true/>
     <key>NSHighResolutionCapable</key> <true/>
